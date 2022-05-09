@@ -15,9 +15,14 @@ print(report)
 
 # part two
 player = "Gerald Vanenburg"
-first_name = player[: player.find("d") + 1]
-last_name = player[player.find("V") : len(player)]
+first_name = player[: player.find(" ")]
+print(first_name)
+last_name = player[player.find(" ") + 1: len(player)]
+print(last_name)
 last_name_len = len(last_name)
 name_short = f"{player[0]}. {last_name}"
+print(name_short)
 chant = " ".join([first_name + "!"] * len(first_name))
+print(chant)
 good_chant = chant[-1] != " "
+print(good_chant)
