@@ -31,6 +31,6 @@ def pull(m1, m2, d):
     return force_pull
 
 
-# print(greet("Ewan", "What's up <name>!"))
+# print(greet("Emma", "Hello there, <name>!"))
 # print(force(10, "pluto"))
 # print(pull(0.1, 5.972 * pow(10, 24), 6.371 * pow(10, 6)))
