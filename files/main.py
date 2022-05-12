@@ -4,14 +4,16 @@ __human_name__ = "files"
 from pathlib import Path
 from zipfile import ZipFile
 
-folder_name = Path.cwd() / "files" / "cache"
+FOLDER_NAME = (
+    Path.cwd() / "files" / "cache"
+)  # global variable because several of functions use it.
 
 
 def clean_cache():
     try:
-        folder_name.mkdir(exist_ok=False)
+        FOLDER_NAME.mkdir(exist_ok=False)
     except FileExistsError:
-        for child in folder_name.iterdir():
+        for child in FOLDER_NAME.iterdir():
             child.unlink()
         print("Empty folder created.")
     else:
@@ -27,19 +29,16 @@ def cache_zip(zip_file, folder):
 
 
 def cached_files():
-    return [str(file) for file in folder_name.iterdir() if file.is_file()]
+    return [str(file) for file in FOLDER_NAME.iterdir() if file.is_file()]
 
 
 def find_password(file_with_pathnames):
     for path in file_with_pathnames:
-        with open(path) as file:
-            if "password" in file.read():
-                target_file = path
-                break
-
-    with open(target_file) as file2:
-        for line in file2:
-            if "password" in line:
-                target_line = line
-                break
+        with open(path, "r") as f:
+            for line in f.readlines():
+                if "password" in line:
+                    target_line = line
+                    break
     return target_line.split()[1]
+
+clean_cache()
