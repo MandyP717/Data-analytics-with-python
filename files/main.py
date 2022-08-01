@@ -40,5 +40,3 @@ def find_password(file_with_pathnames):
                     target_line = line
                     break
     return target_line.split()[1]
-
-clean_cache()
